@@ -7,7 +7,7 @@ PROGRAM P1_MC
 
 IMPLICIT NONE
 
-  REAL*16 :: E1, E2, E
+  REAL*16 :: Delta_E, E
   INTEGER :: M, N, MCS, x, r1279
   INTEGER, ALLOCATABLE :: nbr_array(:,:), s_array(:), s_possible_array(:), table(:)
   N = L**2
@@ -20,15 +20,14 @@ IMPLICIT NONE
   
   CALL write_table(table)
 
-  MCS = 1e8 * N
-  do x = 1, MCS
-        CALL CALC_E_M(s_array, nbr_array, L, E1, M)
-        CALL spin_change(s_array, N, s_possible_array)
-        CALL CALC_E_M(s_possible_array, nbr_array, L, E2, M)
-        if (E2-E1 < 0) then
+  do x = 1, num_MCS
+        CALL spin_change(s_array, N, s_possible_array, S_i)
+        Delta_E = 2 * s_possible_array(S_i) * SUM( nbr_array(:, S_i))
+        
+        if (Delta_E < 0) then
                 s_array = s_possible_array
         else
-                if (r1279() < table(int(E2-E1))) then
+                if (r1279() < table(int(Delta_E))) then
                         s_array = s_possible_array
                 end if
         end if
@@ -48,3 +47,4 @@ END PROGRAM P1_MC
     print'(A, F10.3)', "Energy = ", E/N
 
   END SUBROUTINE Output
+
