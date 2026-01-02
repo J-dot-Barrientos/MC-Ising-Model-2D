@@ -20,6 +20,7 @@ IMPLICIT NONE
   
   CALL write_table(table)
 
+  open (unit=10, file="Energy.dat", status="replace", iostat=ios) 
   do x = 1, num_MCS
         CALL spin_change(s_array, N, s_possible_array, S_i)
         Delta_E = 2 * s_possible_array(S_i) * SUM( nbr_array(:, S_i))
@@ -32,6 +33,8 @@ IMPLICIT NONE
                 end if
         end if
         if (mod(x, 1000) == 0) then
+                CALL CALSC_E_M(s_array, nbr_array, L, E, M)
+                write(10, *) E
                 print *, x
           end if
   end do
