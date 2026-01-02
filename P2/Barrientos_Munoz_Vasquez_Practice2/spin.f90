@@ -9,13 +9,14 @@ module spin
                 end do
         end subroutine spin_initialization
 
-        subroutine spin_change(s_array, Num_part, s_possible_array)
+        subroutine spin_change(s_array, Num_part, s_possible_array, S_i)
                 integer, intent(in) :: s_array(:)
                 integer, intent(out) :: s_possible_array(:)
-                integer :: i
+                integer, intent(out) :: S_i
                 
-                i = mod(int(N*r1279()),Num_part)+1
+                S_i = mod(int(N*r1279()),Num_part)+1
                 s_possible_array(:) = s_array(:)
-                s_possible_array(i) = 2 * mod(int(2*r1279()),2)-1
+                s_possible_array(S_i) = 2 * mod(int(2*r1279()),2)-1
         end subroutine spin_change
 end module spin
+
