@@ -8,7 +8,7 @@ PROGRAM P1_MC
 IMPLICIT NONE
 
   REAL*16 :: Delta_E, E
-  INTEGER :: M, N, MCS, x, r1279
+  INTEGER :: M, N, MCS, x, r1279, S_i
   INTEGER, ALLOCATABLE :: nbr_array(:,:), s_array(:), s_possible_array(:), table(:)
   N = L**2
 
