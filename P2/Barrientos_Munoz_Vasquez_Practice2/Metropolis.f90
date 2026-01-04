@@ -1,1 +1,0 @@
-Metropolis-Hasting algorithm
