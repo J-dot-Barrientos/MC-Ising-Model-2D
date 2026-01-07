@@ -9,7 +9,8 @@ IMPLICIT NONE
 
   DOUBLE PRECISION :: E
   INTEGER :: M, N, i, x, S_i
-  INTEGER, ALLOCATABLE :: nbr_array(:,:), s_array(:), s_possible_array(:)
+  INTEGER, ALLOCATABLE :: nbr_array(:,:), s_array(:) 
+  INTEGER :: s_possible_array
   DOUBLE PRECISION, ALLOCATABLE :: table(:)
   INTEGER :: Delta_E, idx, meas_step
   REAL :: r1279
@@ -22,7 +23,7 @@ IMPLICIT NONE
 
   call setr1279(num_mes)
   
-  allocate(nbr_array(4, N), s_array(N), s_possible_array(N), table(9))
+  allocate(nbr_array(4, N), s_array(N), table(9))
 
   CALL neighbors(L, nbr_array)
   
@@ -39,11 +40,11 @@ IMPLICIT NONE
           CALL spin_change(s_array, N, s_possible_array, S_i)
           Delta_E = -2 * s_possible_array(S_i) * sum(s_array(nbr_array(:, S_i)))
           if (Delta_E < 0) then
-              s_array(S_i) = s_possible_array(S_i)
+              s_array(S_i) = s_possible_array
               else
                 idx = (Delta_E + 2*4)/2 + 1
                 if (r1279() < table(idx)) then
-                    s_array(S_i) = s_possible_array(S_i)
+                    s_array(S_i) = s_possible_array
                 end if
           end if
       end do
