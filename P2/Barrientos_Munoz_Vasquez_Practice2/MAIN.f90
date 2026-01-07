@@ -38,7 +38,7 @@ IMPLICIT NONE
   do x = 1, num_MCS
       do i = 1, N
           CALL spin_change(s_array, N, s_possible_array, S_i)
-          Delta_E = -2 * s_possible_array(S_i) * sum(s_array(nbr_array(:, S_i)))
+          Delta_E = -2 * s_possible_array * sum(s_array(nbr_array(:, S_i)))
           if (Delta_E < 0) then
               s_array(S_i) = s_possible_array
               else
