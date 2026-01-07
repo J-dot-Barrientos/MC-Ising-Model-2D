@@ -11,12 +11,11 @@ module spin
 
         subroutine spin_change(s_array, Num_part, s_possible_array, S_i)
                 integer, intent(in) :: s_array(:)
-                integer, intent(out) :: s_possible_array(:)
+                integer, intent(out) :: s_possible_array
                 integer, intent(out) :: S_i
                 
                 S_i = mod(int(N*r1279()),Num_part)+1
-                s_possible_array(:) = s_array(:)
-                s_possible_array(S_i) = -s_array(S_i)
+                s_possible_array = -s_array(S_i)
         end subroutine spin_change
 end module spin
 
