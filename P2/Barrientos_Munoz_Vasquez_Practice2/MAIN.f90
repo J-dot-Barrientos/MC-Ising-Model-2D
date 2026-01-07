@@ -50,7 +50,7 @@ IMPLICIT NONE
           
       if (mod(x, num_mes) == 0) then
           CALL CALC_E_M(s_array, nbr_array, L, E, M)
-          write(10, *) E
+          write(10, *) E, M
           print *, x
       end if
   end do
