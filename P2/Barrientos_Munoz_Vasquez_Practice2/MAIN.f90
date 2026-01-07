@@ -22,7 +22,7 @@ IMPLICIT NONE
         
   ! total_flips = 1_8 * num_MCS * N
 
-  call setr1279(1234)
+  call setr1279(num_mes)
   
   allocate(nbr_array(4, N), s_array(N), s_possible_array(N), table(9))
 
