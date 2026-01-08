@@ -1,6 +1,6 @@
 # Información sobre Variables Modificables
 
-Se encuentran en Variables.f90:
+Se encuentran en `Variables.f90`:
 
 - **T** : controla el valor de la temperatura en la simulación.
 - **L** : determina la dimensión o el tamaño del sistema simulado.
